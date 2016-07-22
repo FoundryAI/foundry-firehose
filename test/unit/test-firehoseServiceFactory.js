@@ -18,11 +18,12 @@ describe('FirehoseServiceFactory', function() {
 
     describe('create', function() {
 
-        it('Should throw an error if type is not localstorage or kinesis', function() {
+        it('Should throw an error if enabled is not provided', function() {
             let err;
             try {
                 const service = factory.create({
-                    type: 'something',
+                    type: 'localstorage',
+                    streamName: 'mystream',
                     localConfig: {
                         path: './'
                     },
@@ -39,13 +40,67 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('enabled').should.be.greaterThanOrEqual(0);
+        });
+
+        it('Should throw an error if type is not localstorage or kinesis', function() {
+            let err;
+            try {
+                const service = factory.create({
+                    enabled: true,
+                    type: 'something',
+                    streamName: 'mystream',
+                    localConfig: {
+                        path: './'
+                    },
+                    kinesisConfig: {
+                        userName: 'user',
+                        awsAccessKey: 'myAccessKey',
+                        awsSecretKey: 'mySecretKey',
+                        region: 'region'
+                    }
+                }, logger, basePath);
+            } catch (e) {
+                err = e;
+            }
+
+            Should.exist(err);
+            err.isJoi.should.be.True();
+            err.message.indexOf('type').should.be.greaterThanOrEqual(0);
+        });
+
+        it('Should throw an error if streamName is not provided', function() {
+            let err;
+            try {
+                const service = factory.create({
+                    enabled: true,
+                    type: 'localstorage',
+                    localConfig: {
+                        path: './'
+                    },
+                    kinesisConfig: {
+                        userName: 'user',
+                        awsAccessKey: 'myAccessKey',
+                        awsSecretKey: 'mySecretKey',
+                        region: 'region'
+                    }
+                }, logger, basePath);
+            } catch (e) {
+                err = e;
+            }
+
+            Should.exist(err);
+            err.isJoi.should.be.True();
+            err.message.indexOf('streamName').should.be.greaterThanOrEqual(0);
         });
 
         it('Should throw an error if localstorage config does not have the path property', function() {
             let err;
             try {
                 const service = factory.create({
+                    enabled: true,
                     type: 'localstorage',
+                    streamName: 'mystream',
                     localConfig: {}
                 }, logger, basePath);
             } catch (e) {
@@ -54,13 +109,16 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('path').should.be.greaterThanOrEqual(0);
         });
 
         it('Should throw an error if kinesis type does not include userName in kinesisConfig', function() {
             let err;
             try {
                 const service = factory.create({
+                    enabled: true,
                     type: 'kinesis',
+                    streamName: 'mystream',
                     localConfig: {
                         path: './'
                     },
@@ -76,13 +134,16 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('userName').should.be.greaterThanOrEqual(0);
         });
 
         it('Should throw an error if kinesis type does not include awsAccessKey in kinesisConfig', function() {
             let err;
             try {
                 const service = factory.create({
+                    enabled: true,
                     type: 'kinesis',
+                    streamName: 'mystream',
                     localConfig: {
                         path: './'
                     },
@@ -98,13 +159,16 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('awsAccessKey').should.be.greaterThanOrEqual(0);
         });
 
         it('Should throw an error if kinesis type does not include awsSecretKey in kinesisConfig', function() {
             let err;
             try {
                 const service = factory.create({
+                    enabled: false,
                     type: 'kinesis',
+                    streamName: 'mystream',
                     localConfig: {
                         path: './'
                     },
@@ -120,13 +184,16 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('awsSecretKey').should.be.greaterThanOrEqual(0);
         });
 
         it('Should throw an error if kinesis type does not include region in kinesisConfig', function() {
             let err;
             try {
                 const service = factory.create({
+                    enabled: true,
                     type: 'kinesis',
+                    streamName: 'mystream',
                     localConfig: {
                         path: './'
                     },
@@ -142,6 +209,7 @@ describe('FirehoseServiceFactory', function() {
 
             Should.exist(err);
             err.isJoi.should.be.True();
+            err.message.indexOf('region').should.be.greaterThanOrEqual(0);
         });
 
     });

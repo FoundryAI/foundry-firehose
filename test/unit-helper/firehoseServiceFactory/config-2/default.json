@@ -1,5 +1,6 @@
 {
   "someFirehose": {
+    "enabled": "true",
     "type": "kinesis",
     "streamName": "my-stream",
     "localConfig": {

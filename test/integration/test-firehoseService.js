@@ -16,6 +16,7 @@ const logger = LoggerFactory.createLogger(loggerConfig);
 const basePath = Path.join(__dirname, '../unit-helper/firehoseService/localstorage');
 
 const kinesisConfig = {
+    enabled: true,
     type:'kinesis',
     streamName:'vizualai-local-development-snippet-events',
     kinesisConfig: {

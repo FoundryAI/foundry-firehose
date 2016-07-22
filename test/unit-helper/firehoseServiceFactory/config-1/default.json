@@ -1,5 +1,6 @@
 {
   "someFirehose": {
+    "enabled": "true",
     "type": "localstorage",
     "streamName": "my-stream",
     "localConfig": {
