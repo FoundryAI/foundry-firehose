@@ -1,0 +1,15 @@
+{
+  "someFirehose": {
+    "type": "kinesis",
+    "streamName": "my-stream",
+    "localConfig": {
+      "path": "./somepath"
+    },
+    "kinesisConfig": {
+      "userName": "user",
+      "awsAccessKey": "myAccessKey",
+      "awsSecretKey": "someSecretKey",
+      "region": "us-east"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+node_modules
+
+# Don't check these in b/c they contain AWS credentials
+config
