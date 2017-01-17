@@ -31,7 +31,6 @@ const kinesisConfig = {
     type:'kinesis',
     streamName:'vizualai-local-development-snippet-events',
     kinesisConfig: {
-        userName: NodeConfig.get('aws.userName'),
         awsAccessKey: NodeConfig.get('aws.awsAccessKey'),
         awsSecretKey: NodeConfig.get('aws.awsSecretKey'),
         region: 'us-east-1'

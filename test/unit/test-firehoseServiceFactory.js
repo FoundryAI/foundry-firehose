@@ -28,7 +28,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsAccessKey: 'myAccessKey',
                         awsSecretKey: 'mySecretKey',
                         region: 'region'
@@ -54,7 +53,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsAccessKey: 'myAccessKey',
                         awsSecretKey: 'mySecretKey',
                         region: 'region'
@@ -79,7 +77,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsAccessKey: 'myAccessKey',
                         awsSecretKey: 'mySecretKey',
                         region: 'region'
@@ -112,31 +109,6 @@ describe('FirehoseServiceFactory', function() {
             err.message.indexOf('path').should.be.greaterThanOrEqual(0);
         });
 
-        it('Should throw an error if kinesis type does not include userName in kinesisConfig', function() {
-            let err;
-            try {
-                const service = factory.create({
-                    enabled: true,
-                    type: 'kinesis',
-                    streamName: 'mystream',
-                    localConfig: {
-                        path: './'
-                    },
-                    kinesisConfig: {
-                        awsAccessKey: 'myAccessKey',
-                        awsSecretKey: 'mySecretKey',
-                        region: 'region'
-                    }
-                }, logger, basePath);
-            } catch (e) {
-                err = e;
-            }
-
-            Should.exist(err);
-            err.isJoi.should.be.True();
-            err.message.indexOf('userName').should.be.greaterThanOrEqual(0);
-        });
-
         it('Should throw an error if kinesis type does not include awsAccessKey in kinesisConfig', function() {
             let err;
             try {
@@ -148,7 +120,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsSecretKey: 'mySecretKey',
                         region: 'region'
                     }
@@ -173,7 +144,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsAccessKey: 'myAccessKey',
                         region: 'region'
                     }
@@ -198,7 +168,6 @@ describe('FirehoseServiceFactory', function() {
                         path: './'
                     },
                     kinesisConfig: {
-                        userName: 'user',
                         awsAccessKey: 'myAccessKey',
                         awsSecretKey: 'mySecretKey'
                     }
