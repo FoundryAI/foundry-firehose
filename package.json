@@ -1,6 +1,6 @@
 {
-  "name": "hapiest-firehose",
-  "version": "0.0.3",
+  "name": "foundry-firehose",
+  "version": "0.1.0",
   "description": "Wrapper for AWS.Firehose that also provides a localstorage variation",
   "main": "index.js",
   "scripts": {
@@ -10,10 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonathan-fulton/hapiest-firehose.git"
+    "url": "git+https://github.com/FoundryAI/foundry-firehose.git"
   },
   "keywords": [
-    "Hapiest",
     "AWS",
     "Firehose",
     "Kinesis",
@@ -23,18 +22,18 @@
   "author": "Jonathan Fulton",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jonathan-fulton/hapiest-firehose/issues"
+    "url": "https://github.com/FoundryAI/foundry-firehose/issues"
   },
-  "homepage": "https://github.com/jonathan-fulton/hapiest-firehose#readme",
+  "homepage": "https://github.com/FoundryAI/foundry-firehose#readme",
   "dependencies": {
-    "aws-sdk": "~2.28.0",
+    "aws-sdk": "^2.28.0",
     "bluebird": "^3.5.0",
-    "fs-extra": "^2.1.2",
-    "joi": "^10.2.2",
-    "moment": "~2.17.1"
+    "fs-extra": "^3.0.1",
+    "joi": "^10.6.0",
+    "moment": "~2.18.1"
   },
   "devDependencies": {
-    "config": "~1.25.1",
+    "config": "~1.26.1",
     "config-uncached": "1.0.2",
     "hapiest-logger": "0.1.2",
     "mocha": "~3.2.0",
